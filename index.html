@@ -6,22 +6,18 @@
     <meta name="description" content="家庭菜单：看看今天可以吃什么。" />
     <meta name="theme-color" content="#f5f4ef" />
     <title>今天吃什么</title>
-    <link rel="stylesheet" href="./styles.css?v=9" />
+    <link rel="stylesheet" href="./styles.css?v=12" />
     <script src="./data/menu.js?v=10" defer></script>
-    <script src="./app.js?v=9" defer></script>
+    <script src="./app.js?v=10" defer></script>
   </head>
   <body>
     <main class="page-shell">
-      <header class="page-header">
-        <h1>今天吃什么</h1>
-      </header>
-
       <section class="menu-section" aria-labelledby="menu-title">
         <div class="menu-toolbar">
-          <h2 id="menu-title">
-            菜单
+          <h1 id="menu-title">
+            今天吃什么
             <span class="dish-count" id="dish-count" aria-live="polite"></span>
-          </h2>
+          </h1>
 
           <label class="search-box" id="search-box" for="dish-search" hidden>
             <span class="sr-only">搜索菜名</span>
@@ -35,61 +31,67 @@
           </label>
         </div>
 
-        <div class="filter-panel" id="filter-panel" hidden>
-          <div class="filter-bar">
-            <button
-              class="filter-toggle"
-              id="ingredient-filter-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="ingredient-filter-drawer"
-            >
-              材料
-              <span class="filter-count" id="ingredient-filter-count" hidden></span>
-            </button>
-            <button
-              class="filter-toggle"
-              id="method-filter-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="method-filter-drawer"
-            >
-              做法
-              <span class="filter-count" id="method-filter-count" hidden></span>
-            </button>
-            <button class="clear-filters" id="clear-filters" type="button" hidden>
-              清除
-            </button>
+        <div class="menu-body">
+          <aside class="filter-column" aria-label="菜单筛选">
+            <div class="filter-panel" id="filter-panel" hidden>
+              <div class="filter-bar">
+                <button
+                  class="filter-toggle"
+                  id="ingredient-filter-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="ingredient-filter-drawer"
+                >
+                  材料
+                  <span class="filter-count" id="ingredient-filter-count" hidden></span>
+                </button>
+                <button
+                  class="filter-toggle"
+                  id="method-filter-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="method-filter-drawer"
+                >
+                  做法
+                  <span class="filter-count" id="method-filter-count" hidden></span>
+                </button>
+                <button class="clear-filters" id="clear-filters" type="button" hidden>
+                  清除
+                </button>
+              </div>
+
+              <div class="selected-filters" id="selected-filters" hidden></div>
+
+              <div
+                class="filter-drawer"
+                id="ingredient-filter-drawer"
+                aria-label="按材料筛选"
+                hidden
+              >
+                <div class="ingredient-cascade" id="ingredient-cascade"></div>
+              </div>
+
+              <div
+                class="filter-drawer"
+                id="method-filter-drawer"
+                aria-label="按做法筛选"
+                hidden
+              >
+                <div class="filter-options" id="method-filters"></div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="dish-column">
+            <div class="status-card" id="loading-state" role="status">加载中…</div>
+            <div class="dish-grid" id="dish-grid" hidden></div>
+
+            <div class="status-card" id="empty-state" hidden></div>
+
+            <div class="status-card status-card-error" id="error-state" hidden>
+              菜单读取失败，请刷新页面重试。
+            </div>
           </div>
-
-          <div class="selected-filters" id="selected-filters" hidden></div>
-
-          <div
-            class="filter-drawer"
-            id="ingredient-filter-drawer"
-            aria-label="按材料筛选"
-            hidden
-          >
-            <div class="ingredient-cascade" id="ingredient-cascade"></div>
-          </div>
-
-          <div
-            class="filter-drawer"
-            id="method-filter-drawer"
-            aria-label="按做法筛选"
-            hidden
-          >
-            <div class="filter-options" id="method-filters"></div>
-          </div>
-        </div>
-
-        <div class="status-card" id="loading-state" role="status">加载中…</div>
-        <div class="dish-grid" id="dish-grid" hidden></div>
-
-        <div class="status-card" id="empty-state" hidden></div>
-
-        <div class="status-card status-card-error" id="error-state" hidden>
-          菜单读取失败，请刷新页面重试。
         </div>
       </section>
     </main>
