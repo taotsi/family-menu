@@ -6,7 +6,6 @@
   --muted: #70756e;
   --line: #dedfd9;
   --accent: #2f6044;
-  --accent-hover: #244d36;
   font-family:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Microsoft YaHei", "PingFang SC", sans-serif;
@@ -28,7 +27,6 @@ body {
   background: var(--background);
 }
 
-button,
 input {
   font: inherit;
 }
@@ -53,29 +51,6 @@ input {
   font-weight: 750;
   letter-spacing: -0.045em;
   line-height: 1.05;
-}
-
-.random-button,
-.again-button {
-  min-height: 44px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  background: var(--accent);
-  cursor: pointer;
-  font-weight: 700;
-  transition: background 140ms ease;
-}
-
-.random-button:hover,
-.again-button:hover {
-  background: var(--accent-hover);
-}
-
-.random-button:disabled {
-  cursor: wait;
-  opacity: 0.5;
 }
 
 .menu-section {
@@ -189,63 +164,6 @@ input {
   color: #a33d2a;
 }
 
-.recommendation-dialog {
-  width: min(400px, calc(100% - 32px));
-  padding: 0;
-  border: 0;
-  border-radius: 14px;
-  color: var(--text);
-  background: var(--surface);
-  box-shadow: 0 24px 70px rgba(20, 28, 22, 0.2);
-}
-
-.recommendation-dialog::backdrop {
-  background: rgba(20, 25, 21, 0.48);
-}
-
-.dialog-content {
-  position: relative;
-  padding: 38px 32px 30px;
-  text-align: center;
-}
-
-.dialog-content p {
-  margin: 0 0 8px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.dialog-content h2 {
-  margin: 0;
-  font-size: 32px;
-  letter-spacing: -0.03em;
-}
-
-.dialog-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: 0;
-  border-radius: 8px;
-  color: var(--muted);
-  background: transparent;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-.dialog-close:hover {
-  color: var(--text);
-  background: var(--background);
-}
-
-.again-button {
-  min-width: 92px;
-  margin-top: 24px;
-}
-
 .noscript-message {
   margin: 20px;
   padding: 14px;
@@ -267,7 +185,6 @@ input {
   border: 0;
 }
 
-button:focus-visible,
 input:focus-visible {
   outline: 3px solid rgba(47, 96, 68, 0.25);
   outline-offset: 2px;
@@ -282,10 +199,6 @@ input:focus-visible {
   .page-header {
     gap: 16px;
     margin-bottom: 18px;
-  }
-
-  .random-button {
-    flex: 0 0 auto;
   }
 
   .menu-toolbar {

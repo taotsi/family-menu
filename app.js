@@ -1,7 +1,6 @@
 const menuState = {
   dishes: [],
   filteredDishes: [],
-  lastRecommendationIndex: -1,
 };
 
 const elements = {
@@ -12,11 +11,6 @@ const elements = {
   loadingState: document.querySelector('#loading-state'),
   emptyState: document.querySelector('#empty-state'),
   errorState: document.querySelector('#error-state'),
-  randomButton: document.querySelector('#random-button'),
-  recommendationDialog: document.querySelector('#recommendation-dialog'),
-  recommendedDish: document.querySelector('#recommended-dish'),
-  dialogClose: document.querySelector('#dialog-close'),
-  againButton: document.querySelector('#again-button'),
 };
 
 function escapeHtml(value) {
@@ -88,30 +82,6 @@ function filterDishes() {
   renderDishes(menuState.filteredDishes);
 }
 
-function chooseRandomDish() {
-  const candidates = menuState.filteredDishes.length
-    ? menuState.filteredDishes
-    : menuState.dishes;
-
-  if (!candidates.length) {
-    return;
-  }
-
-  let selectedIndex = Math.floor(Math.random() * candidates.length);
-  if (candidates.length > 1 && selectedIndex === menuState.lastRecommendationIndex) {
-    selectedIndex = (selectedIndex + 1) % candidates.length;
-  }
-  menuState.lastRecommendationIndex = selectedIndex;
-
-  const dish = candidates[selectedIndex];
-  elements.recommendedDish.textContent = dish.name;
-
-  if (elements.recommendationDialog.open) {
-    return;
-  }
-  elements.recommendationDialog.showModal();
-}
-
 function loadMenu() {
   try {
     const data = globalThis.FAMILY_MENU;
@@ -125,8 +95,6 @@ function loadMenu() {
     elements.loadingState.hidden = true;
     elements.searchBox.hidden = menuState.dishes.length < 8;
     elements.dishSearch.disabled = menuState.dishes.length === 0;
-    elements.randomButton.hidden = menuState.dishes.length === 0;
-    elements.randomButton.disabled = menuState.dishes.length === 0;
     renderDishes(menuState.dishes);
   } catch (error) {
     console.error(error);
@@ -136,15 +104,5 @@ function loadMenu() {
 }
 
 elements.dishSearch.addEventListener('input', filterDishes);
-elements.randomButton.addEventListener('click', chooseRandomDish);
-elements.againButton.addEventListener('click', chooseRandomDish);
-elements.dialogClose.addEventListener('click', () => {
-  elements.recommendationDialog.close();
-});
-elements.recommendationDialog.addEventListener('click', (event) => {
-  if (event.target === elements.recommendationDialog) {
-    elements.recommendationDialog.close();
-  }
-});
 
 loadMenu();
