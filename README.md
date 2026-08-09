@@ -15,7 +15,7 @@
 
 只有 `name` 必填；`tags` 可以省略。数组中的先后顺序就是页面展示顺序。
 
-修改 `updatedAt` 后推送到 `main` 分支，GitHub Actions 会自动部署最新页面。
+修改菜单后推送到 `main` 分支，GitHub Actions 会自动部署最新页面。
 
 ## 启用 GitHub Pages
 

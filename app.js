@@ -5,9 +5,9 @@ const menuState = {
 };
 
 const elements = {
-  updatedAt: document.querySelector('#updated-at'),
   dishCount: document.querySelector('#dish-count'),
   dishGrid: document.querySelector('#dish-grid'),
+  searchBox: document.querySelector('#search-box'),
   dishSearch: document.querySelector('#dish-search'),
   loadingState: document.querySelector('#loading-state'),
   emptyState: document.querySelector('#empty-state'),
@@ -41,23 +41,6 @@ function normalizeDish(dish) {
   };
 }
 
-function formatUpdatedAt(dateValue) {
-  if (!dateValue) {
-    return '菜单已更新';
-  }
-
-  const date = new Date(`${dateValue}T00:00:00`);
-  if (Number.isNaN(date.getTime())) {
-    return `更新于 ${dateValue}`;
-  }
-
-  return `更新于 ${new Intl.DateTimeFormat('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(date)}`;
-}
-
 function renderTags(tags) {
   if (!tags.length) {
     return '';
@@ -82,9 +65,12 @@ function renderDishes(dishes) {
     )
     .join('');
 
-  elements.dishCount.textContent = `${dishes.length} 道`;
+  elements.dishCount.textContent = dishes.length ? `${dishes.length} 道` : '';
   elements.dishGrid.hidden = dishes.length === 0;
   elements.emptyState.hidden = dishes.length !== 0;
+  elements.emptyState.textContent = menuState.dishes.length
+    ? '没有找到匹配的菜'
+    : '菜单还没有内容';
 }
 
 function filterDishes() {
@@ -136,14 +122,14 @@ function loadMenu() {
     menuState.dishes = data.dishes.map(normalizeDish).filter(Boolean);
     menuState.filteredDishes = [...menuState.dishes];
 
-    elements.updatedAt.textContent = formatUpdatedAt(data.updatedAt);
     elements.loadingState.hidden = true;
-    elements.dishSearch.disabled = false;
+    elements.searchBox.hidden = menuState.dishes.length < 8;
+    elements.dishSearch.disabled = menuState.dishes.length === 0;
+    elements.randomButton.hidden = menuState.dishes.length === 0;
     elements.randomButton.disabled = menuState.dishes.length === 0;
     renderDishes(menuState.dishes);
   } catch (error) {
     console.error(error);
-    elements.updatedAt.textContent = '菜单读取失败';
     elements.loadingState.hidden = true;
     elements.errorState.hidden = false;
   }

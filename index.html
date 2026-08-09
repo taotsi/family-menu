@@ -6,19 +6,16 @@
     <meta name="description" content="家庭菜单：看看今天可以吃什么。" />
     <meta name="theme-color" content="#f5f4ef" />
     <title>今天吃什么</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="./data/menu.js" defer></script>
-    <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=3" />
+    <script src="./data/menu.js?v=3" defer></script>
+    <script src="./app.js?v=3" defer></script>
   </head>
   <body>
     <main class="page-shell">
       <header class="page-header">
-        <div>
-          <h1>今天吃什么</h1>
-          <p class="updated-at" id="updated-at">正在读取菜单…</p>
-        </div>
+        <h1>今天吃什么</h1>
 
-        <button class="random-button" id="random-button" type="button" disabled>
+        <button class="random-button" id="random-button" type="button" disabled hidden>
           随机选一个
         </button>
       </header>
@@ -30,7 +27,7 @@
             <span class="dish-count" id="dish-count" aria-live="polite"></span>
           </h2>
 
-          <label class="search-box" for="dish-search">
+          <label class="search-box" id="search-box" for="dish-search" hidden>
             <span class="sr-only">搜索菜名</span>
             <input
               id="dish-search"
@@ -45,9 +42,7 @@
         <div class="status-card" id="loading-state" role="status">加载中…</div>
         <div class="dish-grid" id="dish-grid" hidden></div>
 
-        <div class="status-card" id="empty-state" hidden>
-          没有找到匹配的菜。
-        </div>
+        <div class="status-card" id="empty-state" hidden></div>
 
         <div class="status-card status-card-error" id="error-state" hidden>
           菜单读取失败，请刷新页面重试。
