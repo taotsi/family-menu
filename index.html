@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="一份简单清楚的家庭菜单，帮助家人快速决定今天吃什么。"
+    />
+    <meta name="theme-color" content="#f7f3e9" />
+    <title>今天吃什么 · 家庭菜单</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./data/menu.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="家庭菜单首页">
+          <span class="brand-mark" aria-hidden="true">家</span>
+          <span>家庭菜单</span>
+        </a>
+        <p class="updated-at" id="updated-at">正在读取菜单…</p>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow">OUR FAMILY MENU</p>
+            <h1 id="page-title">今天吃什么？</h1>
+            <p class="hero-description">
+              看看家里会做的菜。如果还是拿不定主意，就让菜单帮你选一道。
+            </p>
+          </div>
+
+          <button class="random-button" id="random-button" type="button" disabled>
+            <span aria-hidden="true">✦</span>
+            帮我选一道
+          </button>
+        </section>
+
+        <section class="menu-section" aria-labelledby="menu-title">
+          <div class="menu-toolbar">
+            <div>
+              <p class="section-label">当前菜单</p>
+              <h2 id="menu-title">
+                家里会做的菜
+                <span class="dish-count" id="dish-count" aria-live="polite"></span>
+              </h2>
+            </div>
+
+            <label class="search-box" for="dish-search">
+              <span class="search-icon" aria-hidden="true"></span>
+              <span class="sr-only">搜索菜名</span>
+              <input
+                id="dish-search"
+                type="search"
+                placeholder="搜一道菜"
+                autocomplete="off"
+                disabled
+              />
+            </label>
+          </div>
+
+          <div class="status-card" id="loading-state" role="status">
+            <span class="loading-dot" aria-hidden="true"></span>
+            菜单准备中…
+          </div>
+
+          <div class="dish-grid" id="dish-grid" hidden></div>
+
+          <div class="status-card" id="empty-state" hidden>
+            <strong>没有找到这道菜</strong>
+            <span>换个关键词试试看。</span>
+          </div>
+
+          <div class="status-card status-card-error" id="error-state" hidden>
+            <strong>菜单暂时没有加载出来</strong>
+            <span>请刷新页面重试，或检查菜单数据文件。</span>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>认真吃饭，好好生活。</span>
+        <span class="footer-dot" aria-hidden="true"></span>
+        <span>家庭菜单</span>
+      </footer>
+    </div>
+
+    <dialog class="recommendation-dialog" id="recommendation-dialog">
+      <div class="dialog-content">
+        <button
+          class="dialog-close"
+          id="dialog-close"
+          type="button"
+          aria-label="关闭推荐"
+        >
+          ×
+        </button>
+        <p class="dialog-eyebrow">今天不如吃</p>
+        <h2 id="recommended-dish">番茄炒蛋</h2>
+        <p class="dialog-description" id="recommended-description"></p>
+        <div class="dialog-tags" id="recommended-tags"></div>
+        <button class="again-button" id="again-button" type="button">
+          再选一道
+        </button>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="noscript-message">请启用 JavaScript 以查看家庭菜单。</div>
+    </noscript>
+  </body>
+</html>
