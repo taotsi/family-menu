@@ -9,12 +9,11 @@
 ```js
 {
   name: "番茄炒蛋",
-  description: "酸甜开胃，最熟悉的家常味",
   tags: ["快手"],
 }
 ```
 
-只有 `name` 必填；`description` 和 `tags` 都可以省略。数组中的先后顺序就是页面展示顺序。
+只有 `name` 必填；`tags` 可以省略。数组中的先后顺序就是页面展示顺序。
 
 修改 `updatedAt` 后推送到 `main` 分支，GitHub Actions 会自动部署最新页面。
 

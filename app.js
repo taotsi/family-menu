@@ -15,8 +15,6 @@ const elements = {
   randomButton: document.querySelector('#random-button'),
   recommendationDialog: document.querySelector('#recommendation-dialog'),
   recommendedDish: document.querySelector('#recommended-dish'),
-  recommendedDescription: document.querySelector('#recommended-description'),
-  recommendedTags: document.querySelector('#recommended-tags'),
   dialogClose: document.querySelector('#dialog-close'),
   againButton: document.querySelector('#again-button'),
 };
@@ -37,8 +35,6 @@ function normalizeDish(dish) {
 
   return {
     name: dish.name.trim(),
-    description:
-      typeof dish.description === 'string' ? dish.description.trim() : '',
     tags: Array.isArray(dish.tags)
       ? dish.tags.filter((tag) => typeof tag === 'string' && tag.trim()).map((tag) => tag.trim())
       : [],
@@ -77,15 +73,9 @@ function renderTags(tags) {
 function renderDishes(dishes) {
   elements.dishGrid.innerHTML = dishes
     .map(
-      (dish, index) => `
+      (dish) => `
         <article class="dish-card">
-          <span class="dish-number">${String(index + 1).padStart(2, '0')}</span>
           <h3>${escapeHtml(dish.name)}</h3>
-          ${
-            dish.description
-              ? `<p class="dish-description">${escapeHtml(dish.description)}</p>`
-              : ''
-          }
           ${renderTags(dish.tags)}
         </article>
       `,
@@ -102,7 +92,7 @@ function filterDishes() {
 
   menuState.filteredDishes = keyword
     ? menuState.dishes.filter((dish) => {
-        const searchableText = [dish.name, dish.description, ...dish.tags]
+        const searchableText = [dish.name, ...dish.tags]
           .join(' ')
           .toLocaleLowerCase('zh-CN');
         return searchableText.includes(keyword);
@@ -129,12 +119,6 @@ function chooseRandomDish() {
 
   const dish = candidates[selectedIndex];
   elements.recommendedDish.textContent = dish.name;
-  elements.recommendedDescription.textContent = dish.description;
-  elements.recommendedDescription.hidden = !dish.description;
-  elements.recommendedTags.innerHTML = dish.tags
-    .map((tag) => `<span class="dish-tag">${escapeHtml(tag)}</span>`)
-    .join('');
-  elements.recommendedTags.hidden = dish.tags.length === 0;
 
   if (elements.recommendationDialog.open) {
     return;
