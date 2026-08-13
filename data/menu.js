@@ -16,7 +16,7 @@ globalThis.FAMILY_MENU = {
       children: [
         {
           name: "鱼",
-          children: ["鲈鱼", "鲫鱼", "鳕鱼", "笋壳鱼", "鱼头"],
+          children: ["鲈鱼", "鲫鱼", "鳕鱼", "笋壳鱼", "小黄鱼", "鱼头"],
         },
         {
           name: "虾",
@@ -27,7 +27,7 @@ globalThis.FAMILY_MENU = {
     },
     {
       name: "蔬菜",
-      children: ["苋菜", "西红柿", "干菜", "丝瓜", "酸菜", "豆角", "西葫芦"],
+      children: ["苋菜", "西红柿", "干菜", "丝瓜", "酸菜", "豆角", "西葫芦", "青菜", "蘑菇"],
     },
     {
       name: "豆制品",
@@ -66,5 +66,9 @@ globalThis.FAMILY_MENU = {
     { name: "干菜小河虾汤", ingredients: ["水产", "虾", "小河虾", "蔬菜", "干菜"], methods: ["煮"] },
     { name: "腰花汤", ingredients: ["肉类", "猪肉", "腰花"], methods: ["煮"] },
     { name: "清蒸螃蟹", ingredients: ["水产", "螃蟹"], methods: ["蒸"] },
+    { name: "三杯鸡", ingredients: ["肉类", "鸡肉"], methods: ["烧"] },
+    { name: "啤酒鸭", ingredients: ["肉类", "鸭肉"], methods: ["烧"] },
+    { name: "小黄鱼烧年糕", ingredients: ["水产", "鱼", "小黄鱼", "主食", "年糕"], methods: ["烧"] },
+    { name: "青菜炒蘑菇", ingredients: ["蔬菜", "青菜", "蘑菇"], methods: ["炒"] },
   ],
 };
